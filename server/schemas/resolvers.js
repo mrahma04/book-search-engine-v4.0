@@ -1,5 +1,6 @@
 const { User } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -25,7 +26,9 @@ const resolvers = {
         throw new AuthenticationError("Incorrect password");
       }
 
-      return user;
+      const token = signToken(user);
+
+      return { user, token };
     },
   },
 
@@ -50,7 +53,7 @@ const resolvers = {
       const updatedUser = await User.findByIdAndUpdate(
         { _id: args._id },
         { $pull: { savedBooks: { bookId: args.bookId } } },
-        {new: true}
+        { new: true }
       );
       return updatedUser;
     },

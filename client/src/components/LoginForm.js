@@ -109,6 +109,7 @@ const LoginForm = () => {
           Submit
         </Button>
       </Form>
+      {error && <div style={{ paddingTop: ".5rem" }}>Login failed</div>}
     </>
   );
 };

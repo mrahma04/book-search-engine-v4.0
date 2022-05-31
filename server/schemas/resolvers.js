@@ -5,6 +5,9 @@ const resolvers = {
     helloWorld: () => {
       return "Hello world!";
     },
+    users: async () => {
+        return User.find()
+    }
   },
 
   Mutation: {

@@ -35,14 +35,24 @@ const resolvers = {
       return user;
     },
     saveBook: async (parent, args) => {
-      console.log("HELLO", args._id);
-      console.log("HELLO", args.input);
+      console.log("CHECK USER ID FROM ARGS", args._id);
+      console.log("CHECK BOOK OBJECT INPUT FROM ARGS", args.input);
       const user = await User.findByIdAndUpdate(
         { _id: args._id },
         { $addToSet: { savedBooks: args.input } },
         { new: true }
       );
       return user;
+    },
+    removeBook: async (parent, args) => {
+      console.log("CHECK USER ID FROM ARGS", args._id);
+      console.log("CHECK BOOK ID FROM ARGS", args.bookId);
+      const updatedUser = await User.findByIdAndUpdate(
+        { _id: args._id },
+        { $pull: { savedBooks: { bookId: args.bookId } } },
+        {new: true}
+      );
+      return updatedUser;
     },
   },
 };

@@ -53,11 +53,12 @@ const SignupForm = () => {
 
     try {
       // execute addUser mutation and pass in variable data from form
-      console.log('USERFORMDATA BEFORE CALLING ADDUSER', userFormData)
+      console.log("USERFORMDATA BEFORE CALLING ADDUSER", userFormData);
       const { data } = await addUser({
         variables: { ...userFormData },
       });
-      console.log('HELLO', data);
+      console.log("HELLO", data);
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }

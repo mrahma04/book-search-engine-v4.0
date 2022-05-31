@@ -34,6 +34,16 @@ const resolvers = {
       const user = await User.create(args.input);
       return user;
     },
+    saveBook: async (parent, args) => {
+      console.log("HELLO", args._id);
+      console.log("HELLO", args.input);
+      const user = await User.findByIdAndUpdate(
+        { _id: args._id },
+        { $addToSet: { savedBooks: args.input } },
+        { new: true }
+      );
+      return user;
+    },
   },
 };
 

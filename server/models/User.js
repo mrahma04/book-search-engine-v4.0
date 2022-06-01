@@ -42,6 +42,8 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+// 6296701132646a2d78de3a5f
+
 // custom method to compare and validate password for logging in
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);

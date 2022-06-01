@@ -14,10 +14,11 @@ const resolvers = {
       return User.findOne({ _id });
     },
     me: async (parent, args, context) => {
+      console.log('ME RESOLVER')
       if (context.user) {
-        const userData = await User.findOne({})
+        const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
-          .populate("savedBooks");
+          // .populate("savedBooks");
 
         return userData;
       }
@@ -32,14 +33,15 @@ const resolvers = {
       const token = signToken(user);
       return { user, token };
     },
-    saveBook: async (parent, args, context) => {
+    saveBook: async (parent, { input }, context) => {
+      console.log("SAVEBOOK RESOLVER");
       console.log("CHECK USER ID FROM CONTEXT", context.user._id);
-      console.log("CHECK BOOK OBJECT INPUT FROM ARGS", args.input);
+      console.log("CHECK BOOK OBJECT INPUT FROM VARIABLES", input);
 
       if (context.user) {
         const user = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedBooks: args.input } },
+          { $push: { savedBooks: input } },
           { new: true }
         );
         return user;
@@ -60,6 +62,7 @@ const resolvers = {
       }
     },
     login: async (parent, { email, password }) => {
+      console.log("LOGIN RESOLVER", email, password);
       const user = await User.findOne({ email });
 
       if (!user) {

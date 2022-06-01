@@ -70,16 +70,16 @@ const SearchBooks = () => {
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-    console.log("VIOLET", bookToSave);
+    // console.log("VIOLET", bookToSave);
 
     // get token
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-    console.log("VIOLET", token);
-    console.log("VIOLET", Auth.getProfile().data._id);
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+    // console.log("VIOLET", token);
+    // console.log("VIOLET", Auth.getProfile().data._id);
 
-    if (!token) {
-      return false;
-    }
+    // if (!token) {
+    //   return false;
+    // }
 
     // try {
     //   const response = await saveBook(bookToSave, token);
@@ -95,9 +95,12 @@ const SearchBooks = () => {
     // }
     try {
       // add book using saveBook method
-      await saveBook({
+      // console.log('BLUE', bookToSave)
+      const { data } = await saveBook({
         variables: { input: { ...bookToSave } },
       });
+      console.log('BLUE', data)
+      setSavedBookIds([...savedBookIds, bookToSave.bookId])
     } catch (e) {
       console.error(e);
     }

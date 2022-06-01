@@ -1,12 +1,13 @@
 # Book Search Engine v2.0 :green_book::mag:
 
-#### This is a budget tracker application that allows both online and offline access/functionality. Users can add expenses and deposits to their budget with or without an Internet connection. When the user enters transactions offline, the total is updated when they come back online.
+#### This is a Google Books API search engine app that allows you to search books and save them to a stateful back end server. It is built with a GraphQL API using Apollo Server, React front end, MongoDB database and Node.js/Express.js server and API. Users can create an account, log in, retrieve their saved books and add new books after searching using the Google Books API. No user session data  or cookies are persisted in the back end. Instead the app uses JWT for user context.
 
 ## To use this Application
 
 - Navigate to Link below
-- Input transactions
-- Test offline functionality by toggling Network in Chrome DevTools to Offline
+- Create new user/login
+- Search for books using the 'Search For Books' section
+- Retrieve saved books from the 'See Your Books' section
 
 [App URL](https://shielded-sierra-30574.herokuapp.com/)
 
@@ -51,3 +52,27 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 ```
 
 ### Screenshots
+
+### Homepage
+![](./other/2022-06-01-12-27-42.png)
+
+### Search For Books Section
+![](./other/2022-06-01-12-28-39.png)
+
+### See Your Books Section
+![](./other/2022-06-01-12-30-07.png)
+
+### User Logged Out (JWT Deleted From localStorage)
+![](./other/2022-06-01-12-30-26.png)
+
+### Login Section
+![](./other/2022-06-01-12-31-09.png)
+
+### Sign Up Section
+![](./other/2022-06-01-12-31-36.png)
+
+### Save this Book!
+![](./other/2022-06-01-12-32-30.png)
+
+### Delete this Book!
+![](./other/2022-06-01-12-32-54.png)

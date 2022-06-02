@@ -76,3 +76,5 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 ### Delete this Book!
 ![](./other/2022-06-01-12-32-54.png)
+
+![](2022-06-01-20-09-07.png)

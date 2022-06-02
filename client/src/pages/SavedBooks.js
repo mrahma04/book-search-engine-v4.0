@@ -5,6 +5,7 @@ import {
   CardColumns,
   Card,
   Button,
+  Nav
 } from "react-bootstrap";
 
 import { getMe, deleteBook } from "../utils/API";
@@ -20,9 +21,7 @@ const SavedBooks = () => {
 
   // use this to determine if `useEffect()` hook needs to run again
 
-
   const { loading, data } = useQuery(GET_ME);
- 
 
   const userData = data?.me || {};
   console.log("ORANGE", userData);
@@ -56,7 +55,7 @@ const SavedBooks = () => {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
-  
+
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -83,7 +82,7 @@ const SavedBooks = () => {
       const { data } = await removeBook({
         variables: { bookId },
       });
-      console.log('REMOVE', data)
+      console.log("REMOVE", data);
       removeBookId(bookId);
     } catch (e) {
       console.error(e);
@@ -125,6 +124,12 @@ const SavedBooks = () => {
                   <Card.Title>{book.title}</Card.Title>
                   <p className="small">Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
+                  <Nav.Link
+                    href={book.link}
+                    style={{ padding: "0rem", paddingBottom: ".5rem" }}
+                  >
+                    Google Books
+                  </Nav.Link>
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteBook(book.bookId)}

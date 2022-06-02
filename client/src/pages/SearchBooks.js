@@ -7,6 +7,7 @@ import {
   Button,
   Card,
   CardColumns,
+  Nav,
 } from "react-bootstrap";
 
 import Auth from "../utils/auth";
@@ -49,12 +50,15 @@ const SearchBooks = () => {
 
       const { items } = await response.json();
 
+      console.log("ITEMS", items[0].volumeInfo.infoLink);
+
       const bookData = items.map((book) => ({
         bookId: book.id,
         authors: book.volumeInfo.authors || ["No author to display"],
         title: book.volumeInfo.title,
         description: book.volumeInfo.description,
         image: book.volumeInfo.imageLinks?.thumbnail || "",
+        link: book.volumeInfo?.infoLink || "",
       }));
 
       setSearchedBooks(bookData);
@@ -99,8 +103,8 @@ const SearchBooks = () => {
       const { data } = await saveBook({
         variables: { input: { ...bookToSave } },
       });
-      console.log('BLUE', data)
-      setSavedBookIds([...savedBookIds, bookToSave.bookId])
+      console.log("BLUE", data);
+      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (e) {
       console.error(e);
     }
@@ -154,6 +158,12 @@ const SearchBooks = () => {
                   <Card.Title>{book.title}</Card.Title>
                   <p className="small">Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
+                  <Nav.Link
+                    href={book.link}
+                    style={{ padding: "0rem", paddingBottom: ".5rem" }}
+                  >
+                    Google Books
+                  </Nav.Link>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedBookIds?.some(

@@ -57,7 +57,7 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 ![](./other/2022-06-01-12-27-42.png)
 
 ### Search For Books Section
-![](./other/2022-06-01-12-28-39.png)
+![](./other/2022-06-01-20-33-45.png)
 
 ### See Your Books Section
 ![](./other/2022-06-01-12-30-07.png)
@@ -76,5 +76,3 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 ### Delete this Book!
 ![](./other/2022-06-01-12-32-54.png)
-
-![](2022-06-01-20-09-07.png)
